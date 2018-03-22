@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DriversController@index');
 
 //Restaurants
 Route::get('add/restaurant', 'RestaurantController@create')->name('restaurant.create');
