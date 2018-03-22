@@ -12,7 +12,11 @@ class DriversController extends Controller
     {
         //$name = \Request::get('name'); //<-- we use global request to get the param of URI
         
-        $drivers = Drivers::id()->name()->location()->status()->mobile()->start()->end()->get();
+        $drivers = Drivers::name()->location()->status()->mobile()->start()->end()
+                    ->leftjoin('orders', 'drivers.id', '=', 'orders.driver_id')
+                    ->select('drivers.*', DB::raw('count(driver_id) as orders'))
+                    ->groupBy('drivers.id')
+                    ->get();
         return view ('viewsDrivers')->with('drivers',$drivers); 
     }
     public function get($id) {
@@ -21,13 +25,17 @@ class DriversController extends Controller
         if (!isset($driver[0])) {
             $info['info'] = 'Driver Not Found';
         }else{       
-            $info['info'] = $driver;                
+            $info['info'] = $driver;  
+            $orders = Drivers::find($id)->orders;
+            /*
             $orders = DB::table('orders')
             ->join('restaurants', 'orders.restaurant_id', '=', 'restaurants.id')
             ->select('orders.*', 'restaurants.name as restaurant_name')->where('driver_id', $id)->get();
+            
             if (!isset($orders[0])) {
                 $orders = 'No Orders Assigned To The Driver';
             }
+            */
             $info['orders'] = $orders;           
         }
         
@@ -53,8 +61,5 @@ class DriversController extends Controller
         return redirect('/add/driver')->with('message','Driver Added');
 
     }
-    public function orders()
-    {
-    	return $this->hasMany('App\Orders');
-    }
+    
 }

@@ -18,7 +18,8 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">Mobile Number</label>
-                        <input type="text" class="form-control" name="driver_mobile_number" required/>
+                        <input type="text" class="form-control number" name="driver_mobile_number" required/>
+                        <span class="description">Only Numbers allowed , Max length 10 digets</span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">Starting Working Time</label>

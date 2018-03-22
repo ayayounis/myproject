@@ -10,7 +10,7 @@
                     Add Order Details
                 </div>
                 <div class="panel-body">
-                <form method="post" action="{{ route('orders.store') }}">
+                <form method="post" action="{{ route('orders.store') }}" class="order-page">
                     {{csrf_field()}}
                     <?php 
                         $drivers = DB::table('drivers')->where('status', '1')->orderBy('name')->get();
@@ -34,28 +34,29 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">Customer Name</label>
-                        <input type="text" class="form-control" name="customer_name" />
+                        <input type="text" class="form-control" name="customer_name" required />
+                        <span class="description">Only Numbers allowed , Max length 10 digets</span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">Customer Mobile Number</label>
-                        <input type="text" class="form-control" name="customer_mobile_number"/>
+                        <input type="text" class="form-control number" name="customer_mobile_number" required/>
                     </div>     
                     <div class="form-group">
                         <label class="col-md-4">Order Details</label>
                         <textarea class="form-control"  name="restaurant_item" required>pasta , pasta , Pizza</textarea>
                     </div>                    
                     <div class="form-group">
-                        <label class="col-md-4">Status</label>
-                        <select class="form-control" name="order_status">
+                        <label  class="col-md-4">Status</label>
+                        <select id="order_status" class="form-control" name="order_status" required>
                             <option value="Placed">Placed</option>
                             <option value="Ready">Ready</option>
                             <option value="On Way">On Way</option>
                             <option value="Delivered">Delivered</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="delivared_at">
                         <label class="col-md-4">Delivered At</label>
-                        <input type="datetime-local" name="delivared_at" value="2018-03-20T15:43:00" >
+                        <input  type="datetime-local" name="delivared_at" value="2018-03-20T15:43:00" >
                      </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add</button>

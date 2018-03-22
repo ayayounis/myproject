@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Search</div>
                 <div class="panel-body">
-                    <form method="get" action="{{ route('drivers.index') }}">
+                    <form method="get" action="{{ route('drivers.index') }}" id="drivers">
                         <div class="col-md-4 inline">
                             <label class="">Driver ID</label>
                             <input type="text" class="form-control col-md-4" name="id" value="{{request()->id}}"/>
@@ -43,7 +43,7 @@
                                 }
                             @endphp
                             <label class="">Status</label>
-                            <select class="form-control col-md-6" name="status">
+                            <select id="order_status" class="form-control col-md-6" name="status">
                                 <option value>All</option>
                                 <option value="1" {{$active}}>Active</option>
                                 <option value="0" {{$notactive}}>Not Active</option>
@@ -52,11 +52,13 @@
                         <div class="col-md-4 inline">
                             <label class=""></label>
                             <span class="input-group-btn">
-                                <button class="btn btn-default-sm" type="submit">
+                                <button class="btn btn-default-sm " type="submit">
                                     Search
                                 </button>
+                                <input class="form-button btn btn-default-sm clearbtn" type="reset" value="Clear form">
                             </span>
                         </div>
+                        
                     </form>
                 </div>
             </div>
@@ -73,7 +75,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <table class="table table-striped table-hover">
+                    
+                    <table class="table table-striped ">
                         <thead>
                             <tr>
                             <th scope="col">id</th>
@@ -84,12 +87,13 @@
                             <th scope="col">location</th>
                             <th scope="col">Status</th>
                             <th scope="col">View</th>
+                            <th scope="col">Total Orders</th>
                             </tr>
                         </thead>
                     <tbody>
                         @foreach ($drivers as $driver)
                         <tr>
-
+                            
                             @php
                                 $driverlink= 'driver/'.$driver->id;
                                 $status = 'Not Active'; 
@@ -110,6 +114,7 @@
                             <td>{{$driver->location}}</td>
                             <td>{{$status}}</td>
                             <td><a href="{{ url($driverlink) }}">View</a></td>
+                            <td class="text-center">{{$driver->orders}}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -18,7 +18,8 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">Restaurant Phone Number</label>
-                        <input type="text" class="form-control" name="restaurant_phone_number" required/>
+                        <input type="text" class="form-control number" name="restaurant_phone_number" required/>
+                        <span class="description">Only Numbers allowed , Max length 10 digets</span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4">Restaurant Menu</label>

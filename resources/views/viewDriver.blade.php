@@ -10,7 +10,7 @@
                 </div>
             @endif
             
-            @if ($info['info'] == 'Driver Not Found')      
+            @if (sizeof($info['info']) == 0)      
             <div class="panel panel-primary">
                 <div class="alert alert-error">
                     Driver Not Found
@@ -60,10 +60,12 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Drivers Orders</div>
                     <div class="panel-body">
-                        @if ($info['orders'] == 'No Orders Assigned To The Driver')      
+                        
+                        @if (sizeof($info['orders']) == 0)      
                             No Orders Assigned To The Driver
                         @else  
                             <table class="table table-striped">
+                                <Caption> Total Numbers of orders: {{sizeof($info['orders'])}}</caption>
                                 <thead>
                                     <tr>
                                     <th scope="col">Order ID</th>
