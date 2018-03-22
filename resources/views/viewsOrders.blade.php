@@ -45,8 +45,8 @@
                                 <td>0{{$order->customer_number}}</td>
                                 <td>{{$order->Item}}</td>
                                 <td>{{$order->status}}</td>
-                                @if ($order->status == 'delivered')
-                                <td>{{$order->delivared_at}}</td>
+                                @if ($order->status == 'Delivered')
+                                <td class="text-success">{{$order->delivared_at}}</td>
                                 @else  
                                 <td>Not Delivered Yet!</td>
                                 @endif

@@ -54,9 +54,9 @@
                             <div class="form-control">{{$order->status}}</div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4">Order Status</label>
+                            <label class="col-md-4">Delivered At</label>
                             <div class="form-control">
-                            @if ($order->status == 'delivered')
+                            @if ($order->status == 'Delivered')
                             {{$order->delivared_at}}
                             @else  
                             Not Delivered Yet!

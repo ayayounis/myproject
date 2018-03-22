@@ -38,7 +38,7 @@ class OrdersController extends Controller
     {
         $order = new Orders;
         $order->created_on = Carbon::now()->toDateTimeString();
-        if($request->get('order_status') == 'delivered'){
+        if($request->get('order_status') == 'Delivered'){
             $order->delivared_at = $request->get('delivared_at');
         }
     	$order->driver_id = $request->get('driver_name');
